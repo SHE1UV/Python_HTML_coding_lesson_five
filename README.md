@@ -4,7 +4,7 @@
 
 ## Запуск сайта онлайн
 
-Для запуская сайта с книгами можно перейти по ссылке: [https://she1uv.github.io/Python_HTML_coding_lesson_five/](https://she1uv.github.io/Python_HTML_coding_lesson_five/)
+Для запуская сайта с книгами можно перейти по ссылке: [https://she1uv.github.io/Python_HTML_coding_lesson_five/pages/index1.html](https://she1uv.github.io/Python_HTML_coding_lesson_five/pages/index1.html)
 
 ## Запуск сайта оффлайн
 
