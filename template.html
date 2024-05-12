@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/css/cdn.jsdelivr.net_npm_bootstrap@4.5.3_dist_css_bootstrap.min.css" >
+    <link rel="icon" href="../static/media/images/favicon.ico">
+
+    <title>Онлайн библиотека</title>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <nav aria-label=" " class="mt-4">
+        <ul class="pagination " >
+          {% if page_number == 1 %}
+            <li class="page-item disabled">
+              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">Назад</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="../pages/index{{page_number-1}}.html">Назад</a>
+            </li>
+          {% endif %}
+          {% for number in range(1, pages_count+1) %}
+            {% if number == page_number %}
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="../pages/index{{number}}.html">{{number}}</a>
+              </li>
+            {% else %}
+              <li class="page-item">
+                <a class="page-link" href="../pages/index{{number}}.html">{{number}}</a>
+              </li>
+            {% endif %}
+          {%endfor%}
+          {% if page_number == pages_count %}
+            <li class="page-item disabled">
+              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">Вперёд</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="../pages/index{{page_number+1}}.html">Вперёд</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+
+
+      {%for books in row_of_books%}
+        <div class="row">
+          {%for book in books%}
+            <div class="col">
+              <div class="card mb-3"  style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="../media/{{book.img_src | urlencode }}" class="card-img img-fluid" alt="{{book.img_src | urlencode }}">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{book.title}}</h5>
+                      <p class="card-text">{{book.author}}</p>
+                      <p>
+                        {% for genre in book.genres%}
+                          <span class="badge badge-light">{{genre}}</span>
+                        {% endfor %}
+                      </p>
+                      <a href="../media/{{book.book_path | urlencode }}" target="_blank">Читать</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          <div class="w-100"></div>
+        </div>
+      {% endfor %}
+    </div>
+
+
+    <script src="../static/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="../static/js/cdnjs.cloudflare.com_ajax_libs_popper.js_1.14.7_umd_popper.min.js"></script>
+    <script src="../static/js/stackpath.bootstrapcdn.com_bootstrap_4.3.1_js_bootstrap.min.js" ></script>
+
+  </body>
+</html>
