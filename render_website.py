@@ -1,6 +1,7 @@
+import argparse
 import json
 from pathlib import Path
-import argparse
+
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
