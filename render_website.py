@@ -8,6 +8,9 @@ from livereload import Server
 from more_itertools import chunked
 
 
+DEFAULT_JSON_PATH = "books.json"
+PAGES_FOLDER = "pages/"
+
 def on_reload():
 
     parser = argparse.ArgumentParser(
@@ -17,7 +20,7 @@ def on_reload():
         "--json_path",
         type=str,
         help="путь к JSON файлу",
-        default="books.json"
+        default=DEFAULT_JSON_PATH
     )
     args = parser.parse_args()
 
@@ -42,17 +45,16 @@ def on_reload():
             page_number=number,
             pages_count=pages_count
         )
-        with open(f"pages/index{number}.html", "w", encoding="utf8") as file:
+        with open(f"{PAGES_FOLDER}/index{number}.html", "w", encoding="utf8") as file:
             file.write(rendered_page)
 
 
 def main():
-    folder = "pages/"
-    Path(folder).mkdir(parents=True, exist_ok=True)
+    Path(PAGES_FOLDER).mkdir(parents=True, exist_ok=True)
     on_reload()
     server = Server()
     server.watch("template.html", on_reload)
-    server.serve(root=".",  default_filename="pages/index1.html")
+    server.serve(root=".",  default_filename=f"{PAGES_FOLDER}/index1.html")
 
 
 if __name__ == "__main__":
